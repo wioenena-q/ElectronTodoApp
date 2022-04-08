@@ -51,22 +51,17 @@
     margin: 10px auto;
 }
 
-.todo-icons {
-    font-size: 1.2rem;
-}
-
 .todo-icons i {
     opacity: 0;
-    transition: opacity .5s ease;
+    transition: all .5s ease;
     cursor: pointer;
     margin-right: 15px;
+    transform: scale(1);
 }
 
 .todo-icons i::before {
     transition: all .5s ease;
 }
-
-
 
 
 .todo-icons i:last-child {
@@ -79,7 +74,10 @@
 
 .todo-icons i:hover::before {
     color: #ffffff;
-    font-size: 1.6rem;
+}
+
+.todo-icons i:hover {
+    transform: scale(2);
 }
 
 .todo-list li:hover .todo-icons i {
