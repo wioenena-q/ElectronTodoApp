@@ -1,0 +1,21 @@
+{
+  "name": "electron-todo",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "@types/node": "^17.0.23",
+    "@types/sqlite3": "^3.1.8",
+    "electron": "^18.0.3",
+    "electron-builder": "^22.14.13"
+  },
+  "scripts": {
+    "electron:build": "electron-builder .",
+    "electron:dev": "set ELECTRON_IS_DEV=1 && electron ."
+  },
+  "dependencies": {
+    "electron-is-dev": "^2.0.0",
+    "sqlite3": "^5.0.2"
+  }
+}
