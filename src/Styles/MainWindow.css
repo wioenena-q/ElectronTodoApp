@@ -77,7 +77,7 @@
 }
 
 .todo-icons i:hover {
-    transform: scale(2);
+    transform: scale(1.5);
 }
 
 .todo-list li:hover .todo-icons i {

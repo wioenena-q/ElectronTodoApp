@@ -37,8 +37,8 @@ const menuTemplate = [
         click: () => {
           if (isDev) {
             console.log("New todo");
-            NewTodoWindow();
           }
+          NewTodoWindow();
         },
       },
       {
