@@ -1,11 +1,13 @@
-const { BrowserWindow, Menu, app, MenuItem } = require("electron");
+const { BrowserWindow, Menu, app, MenuItem, ipcMain } = require("electron");
 const { join } = require("path");
 const { isDarwin, isDev } = require("../Constants");
 const { createDevToolMenu } = require("./Util");
 const NewTodoWindow = require("./NewTodo/NewTodoWindow");
 
 module.exports = function MainWindow() {
-  const win = new BrowserWindow({
+  menuTemplate.splice(1, menuTemplate.length);
+
+  let win = new BrowserWindow({
     width: 1080,
     height: 720,
     title: "TODO APP",
@@ -13,7 +15,8 @@ module.exports = function MainWindow() {
     minimizable: process.platform !== "linux",
     maximizable: !isDev,
     webPreferences: {
-      preload: join(__dirname, "preload.js"),
+      nodeIntegration: true,
+      contextIsolation: false,
     },
   });
 
@@ -25,7 +28,20 @@ module.exports = function MainWindow() {
 
   win.setMenu(Menu.buildFromTemplate(menuTemplate));
   win.loadFile(join(__dirname, "MainWindow.html"));
+
+  win.on("closed", () => {
+    win = null;
+    app.quit();
+  });
+
+  ipcMain.on("accept-input", (event, todo) => {
+    win.webContents.send("submitted-todo", todo);
+  });
 };
+
+app.on("window-all-closed", () => {
+  if (isDarwin) app.quit();
+});
 
 const menuTemplate = [
   new MenuItem({
