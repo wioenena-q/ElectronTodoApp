@@ -38,21 +38,18 @@
             li.innerHTML = todo;
             const div = document.createElement("div");
             div.classList.add("todo-icons");
-            const [check, trash, marker] = [
-                document.createElement("i"),
+            const [trash, marker] = [
                 document.createElement("i"),
                 document.createElement("i"),
             ];
 
 
-            check.addEventListener("click", () => {
+            trash.addEventListener("click", () => {
                 list.removeChild(li);
             });
 
-            check.classList.add("fas", "fa-check");
             trash.classList.add("fa-solid", "fa-trash");
             marker.classList.add("fa-solid", "fa-marker");
-            div.appendChild(check);
             div.appendChild(trash);
             div.appendChild(marker);
             li.appendChild(div);
